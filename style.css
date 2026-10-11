@@ -1,0 +1,197 @@
+/* =========================================================
+   NASI + TELOR - style.css
+   Urutan: 1) Variabel  2) Reset  3) Komponen umum
+           4) Tiap section  5) Responsive (media query)
+   ========================================================= */
+
+/* ---------- 1. VARIABEL WARNA (ubah di sini, berlaku di semua tempat) ---------- */
+:root {
+  --yellow: #FFC928;
+  --yellow-soft: #FFF6D6;
+  --orange: #F57C00;
+  --orange-dark: #D96800;
+  --black: #1A1A1A;
+  --white: #FFFFFF;
+  --gray: #5E5E5E;
+  --radius: 14px;
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
+}
+
+/* ---------- 2. RESET DASAR ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }   /* border-box: padding tidak menambah lebar */
+html { scroll-behavior: smooth; scroll-padding-top: 90px; } /* scroll halus + ruang untuk navbar */
+body {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--black);
+  background: var(--white);
+  line-height: 1.6;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* Pembungkus agar isi tidak terlalu lebar dan selalu di tengah */
+.container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* Fokus keyboard yang jelas (aksesibilitas) */
+a:focus-visible { outline: 3px solid var(--black); outline-offset: 3px; }
+
+/* ---------- 3. KOMPONEN UMUM ---------- */
+/* Tombol */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: 700;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-orange { background: var(--orange); color: var(--white); }
+.btn-orange:hover { background: var(--orange-dark); }
+.btn-dark { background: var(--black); color: var(--yellow); }
+.btn-dark:hover { background: #333; }
+.btn-small { padding: 8px 18px; font-size: 0.9rem; }
+
+/* Logo: tanda + diberi warna orange */
+.logo { font-size: 1.4rem; font-weight: 900; letter-spacing: 1px; }
+.logo span { color: var(--orange); }
+
+/* Judul tiap section */
+.section { padding: 70px 0; }
+.section-title { font-size: 2rem; text-align: center; }
+.section-title.left { text-align: left; }
+.section-subtitle { text-align: center; color: var(--gray); margin: 8px 0 40px; }
+
+/* ---------- 4A. NAVBAR ---------- */
+.header {
+  position: sticky;          /* tetap menempel saat halaman di-scroll */
+  top: 0;
+  z-index: 10;
+  background: var(--yellow);
+  box-shadow: var(--shadow);
+}
+.navbar {
+  display: flex;             /* Flexbox: logo | menu | tombol sejajar */
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.nav-links { display: flex; gap: 28px; font-weight: 600; }
+.nav-links a:hover { color: var(--orange-dark); }
+
+/* ---------- 4B. HERO ---------- */
+.hero {
+  background: linear-gradient(135deg, var(--yellow) 0%, #FFE27A 100%);
+  padding: 70px 0;
+}
+.hero-grid {
+  display: grid;             /* Grid: 2 kolom sama lebar */
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+}
+.hero-text h1 { font-size: 2.8rem; line-height: 1.15; margin-bottom: 18px; }
+.hero-text p { font-size: 1.1rem; margin-bottom: 28px; max-width: 460px; }
+.hero-image img { border-radius: 24px; box-shadow: var(--shadow); }
+
+/* ---------- 4C. MENU ---------- */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);   /* 3 kolom di desktop */
+  gap: 24px;
+}
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;          /* gambar ikut melengkung mengikuti card */
+  display: flex;
+  flex-direction: column;
+}
+.card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.card-body { padding: 18px; display: flex; flex-direction: column; flex: 1; }
+.card-body h3 { font-size: 1.15rem; margin-bottom: 6px; }
+.card-body p { color: var(--gray); font-size: 0.95rem; flex: 1; }  /* flex:1 -> harga selalu sejajar di bawah */
+.card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; }
+.price { font-size: 1.2rem; font-weight: 800; color: var(--orange-dark); }
+
+/* ---------- 4D. PROMO ---------- */
+.promo { background: var(--black); padding: 50px 0; }
+.promo-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+.promo-label { font-size: 3rem; font-weight: 900; color: var(--yellow); line-height: 1; }
+.promo-text { font-size: 1.3rem; color: var(--white); margin-bottom: 10px; }
+.promo .btn-dark { background: var(--orange); color: var(--white); }
+
+/* ---------- 4E. TENTANG KAMI ---------- */
+.about { background: var(--yellow-soft); }
+.about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; }
+.about-grid p { margin-top: 14px; max-width: 520px; }
+.about-list { display: grid; gap: 14px; }
+.about-list li {
+  background: var(--white);
+  padding: 16px 18px;
+  border-radius: var(--radius);
+  border-left: 6px solid var(--orange);
+  box-shadow: var(--shadow);
+}
+.about-list strong { display: block; }
+
+/* ---------- 4F. KONTAK ---------- */
+.contact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.contact-item {
+  background: var(--white);
+  border: 2px solid var(--yellow);
+  border-radius: var(--radius);
+  padding: 22px;
+  text-align: center;
+}
+.contact-item h3 { margin-bottom: 6px; }
+.contact-item a { color: var(--orange-dark); font-weight: 700; }
+.contact-item a:hover { text-decoration: underline; }
+
+/* ---------- 4G. FOOTER ---------- */
+.footer { background: var(--black); color: var(--white); padding: 36px 0; }
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer .logo { color: var(--yellow); }
+.footer p { font-size: 0.9rem; opacity: 0.8; }
+.social { display: flex; gap: 18px; }
+.social a:hover { color: var(--yellow); }
+
+/* ---------- 5. RESPONSIVE ---------- */
+/* Tablet (lebar <= 900px): menu jadi 2 kolom */
+@media (max-width: 900px) {
+  .menu-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-text h1 { font-size: 2.3rem; }
+}
+
+/* HP (lebar <= 640px): semua jadi 1 kolom, navbar dua baris */
+@media (max-width: 640px) {
+  .navbar { flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .nav-links { order: 3; width: 100%; justify-content: center; gap: 16px; font-size: 0.9rem; }
+
+  .hero { padding: 40px 0; }
+  .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  .hero-text p { margin-left: auto; margin-right: auto; }
+  .hero-text h1 { font-size: 1.9rem; }
+  .hero-image { order: -1; }           /* gambar tampil di atas teks */
+
+  .section { padding: 50px 0; }
+  .menu-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+  .promo-label { font-size: 2.4rem; }
+  .footer-inner { flex-direction: column; text-align: center; }
+}
